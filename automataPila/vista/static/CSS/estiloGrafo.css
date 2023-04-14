@@ -1,0 +1,116 @@
+#grafo {
+    text-align: center;
+    line-height: 7cm;
+    margin: 10%;
+}
+.circulo {
+    background: white;
+    border-radius: 50%;
+    border: 1mm black solid;
+    border-width: 1mm;
+    padding: 4mm;
+    padding-left: 5mm;
+    padding-right: 5mm;
+}
+.flecha {
+    position: absolute;
+    width: 3mm;
+    height: 3mm;
+    margin: 1mm;
+    border-top: solid 1mm black;
+    border-right: solid 1mm black;
+}
+.linea {
+    position: absolute;
+    border-top: solid 1mm black;
+}
+.letra {
+    position: absolute;
+    font-size: 6mm;
+}
+#let3 {
+    margin-top: 1mm;
+    margin-left: 16mm;
+    line-height: 6mm;
+    transform: rotate(180deg);
+}
+#let4 {
+    margin-top: -32mm;
+    margin-left: 18mm;
+    transform: rotate(180deg);
+}
+#let5 {
+    margin-top: -9mm;
+    line-height: 6mm;
+    margin-left: 20mm;
+}
+#let6 {
+    margin-top: -62mm;
+    line-height: 6mm;
+    margin-left: 109mm;
+}
+#flechaCurva1 {
+    width: 47mm;
+    height: 25mm;
+    position: absolute;
+    margin-top: 10mm;
+    margin-left: -14mm;
+}
+#flechaCurva2 {
+    width: 47mm;
+    height: 25mm;
+    position: absolute;
+    margin-top: 10mm;
+    margin-left: 28mm;
+}
+#q {
+    margin-left: 42mm;
+}
+#l1 {
+    width: 27mm;
+    margin-left: -27mm;
+    margin-top: 34mm;
+    transform: rotate(360deg);
+}
+#f1 {
+    margin-top: 33mm;
+    margin-left: -4mm;
+    transform: rotate(49deg);
+}
+#f2 {
+    margin-top: 24mm;
+    margin-left: 6mm;
+    transform: rotate(151deg);
+}
+#l3 {
+    width: 43mm;
+    margin-left: -1mm;
+    margin-top: 34mm;
+    transform: rotate(180deg);
+}
+#f3 {
+    margin-top: 33mm;
+    margin-left: 38mm;
+    transform: rotate(45deg);
+}
+#l4 {
+    width: 46mm;
+    margin-left: -2mm;
+    margin-top: 34mm;
+    transform: rotate(180deg);
+}
+#f4 {
+    margin-top: 33mm;
+    margin-left: 41mm;
+    transform: rotate(45deg);
+}
+#f5 {
+    margin-top: 24mm;
+    margin-left: 49mm;
+    transform: rotate(169deg);
+}
+#r {
+    outline: 1mm black solid;
+    outline-offset: 2mm;
+    margin-left: 48mm;
+}

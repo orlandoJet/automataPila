@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>automata de pila</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href='{% static "CSS/estiloGrafo.css" %}'>
+    </head>
+    <body>
+        <section id="grafo">
+            <span class="linea" id="l1"></span>
+            <span class="flecha" id="f1"></span>
+            <p class="letra" id="let5">
+                b,b/ bb<br>
+                a,b/ ba<br>
+                b,a/ ab<br>
+                b,#/ #b<br>
+                a,#/ #a<br>
+            </p>
+            <canvas id="flechaCurva1"></canvas>
+            <span class="flecha" id="f2"></span>
+            <span class="circulo" id="p">p</span>             
+            <span class="linea" id="l3">
+                <p class="letra" id="let3">
+                    b,b/ &lambda;<br>
+                    a,a/ &lambda;<br>
+                </p>
+            </span>
+            <span class="flecha" id="f3"></span>
+            <p class="letra" id="let6">
+                b,b/ &lambda;<br>
+                a,a/ &lambda;<br>
+            </p>
+            <canvas id="flechaCurva2"></canvas>
+            <span class="flecha" id="f5"></span>
+            <span class="circulo" id="q">q</span>  
+            <span class="linea" id="l4">
+                <p class="letra" id="let4">
+                    &lambda;,#/ #
+                </p>
+            </span>
+            <span class="flecha" id="f4"></span>
+            <span class="circulo" id="r">r</span>
+        </section>
+    <script src='{% static "JS/flechasCanvas.js"%}'></script>
+    </body>
+</html>
