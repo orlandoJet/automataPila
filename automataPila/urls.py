@@ -18,5 +18,5 @@ from django.urls import path
 from . import indexVistas
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/',indexVistas.grafo),
+    path('inicio/',indexVistas.CrearGrafo.grafo),
 ]
