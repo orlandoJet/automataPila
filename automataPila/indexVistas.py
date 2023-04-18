@@ -20,7 +20,7 @@ class CrearGrafo:
     @csrf_exempt
     def Palindromo(request):
 
-        # Definimos los símbolos que se utilizarán en la pila
+        # Definimos los símbolos que se utilizarán en la pila        libreria pyformlang
         stack_symbols = {StackSymbol("S"), StackSymbol("#")}
 
         # Definimos los estados
@@ -67,7 +67,7 @@ class CrearGrafo:
         return HttpResponse(resultados)
 
 
-#        # Crear el DPDA
+#        # Crear el DPDA         libreria automatalib
 #        dpda = DPDA(
 #            # Definir los estados
 #            states={'p', 'q', 'r', 'f'},
