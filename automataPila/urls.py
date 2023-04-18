@@ -19,4 +19,6 @@ from . import indexVistas
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/',indexVistas.CrearGrafo.grafo),
+    path('palindromo/',indexVistas.CrearGrafo.Palindromo,name='Palindromo'),
+    #path('historial/',indexVistas.CrearGrafo.historial),
 ]

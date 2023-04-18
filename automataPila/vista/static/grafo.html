@@ -45,6 +45,26 @@
             <span class="flecha" id="f4"></span>
             <span class="circulo" id="r">r</span>
         </section>
+        <section id="insercion">
+            <form method="post" action="{% url 'Palindromo' %}" id="evaluador" >
+                
+               
+                <input type="text" name="palabra" placeholder="Ingrese una palabra...">
+                <button type="submit">Evaluar</button>
+            </form>
+            {% if resultados %}
+                <ul>
+                {% for resultado in resultados %}
+                    <li>{{ resultado }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <br>
+
+
+
+        </section>
+        
     <script src='{% static "JS/flechasCanvas.js"%}'></script>
     </body>
 </html>
