@@ -60,7 +60,35 @@
                 </ul>
             {% endif %}
             <br>
-
+            <form method="post" action="{% url 'historial' %}" id="evaluador" >
+                {% csrf_token %}
+                <button type="submit">Mostrar historial</button>
+            </form>
+            <form method="post" action="{% url 'borrar_historial' %}" id="evaluador">
+                {% csrf_token %}
+                <button type="submit">Borrar historial</button>
+            </form>
+            <br>
+            {% if historial %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Palabra ingresada</th>
+                            <th>"Estado de la palabra"</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in historial %}
+                        <tr>
+                            <td>{{ h.palabrasIngresadas }}</td>
+                            <td>{{ h.estadoDelaPalabra }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p> "No hay palabras en el historial."</p>
+            {% endif %}
 
 
         </section>
