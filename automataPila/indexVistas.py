@@ -3,6 +3,8 @@ from django.template import Template, Context
 from django.views.decorators.csrf import csrf_exempt
 from .models import Historial
 from django.shortcuts import redirect
+from .models import Historial
+from django.shortcuts import redirect
 
 class CrearGrafo:
     @csrf_exempt
