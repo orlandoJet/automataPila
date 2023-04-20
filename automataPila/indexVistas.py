@@ -3,11 +3,13 @@ from django.template import Template, Context
 from django.views.decorators.csrf import csrf_exempt
 from .models import Historial
 from django.shortcuts import redirect
+from .models import Historial
+from django.shortcuts import redirect
 
 class CrearGrafo:
     @csrf_exempt
     def grafo(request):
-        docExterno=open("C://Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context()
@@ -20,19 +22,30 @@ class CrearGrafo:
         palabra = request.POST.get('palabra', '')
         pila = []
         resultados = []
-
+        palabraVal=True
+        
         for letra in palabra:
-            pila.append(letra)
+            if letra==" ":
+                palabraVal=False
+                break
+            if letra=="a" or letra=="b":
+                pila.append(letra)
+            else:
+                palabraVal=False
+                break   
         palabra_invertida = ""
-        while len(pila) > 0:
-            palabra_invertida += pila.pop()
-        if palabra == palabra_invertida:
-            resultados.append(f'La cadena "{palabra}" es un palíndromo.')
+        if palabraVal==True:
+            while len(pila) > 0:
+                palabra_invertida += pila.pop()
+            if palabra == palabra_invertida:
+                resultados.append(f'La cadena "{palabra}" es un palíndromo.')
+            else:
+                resultados.append(f'La cadena "{palabra}" no es un palíndromo.')
         else:
-            resultados.append(f'La cadena "{palabra}" no es un palíndromo.')
+            resultados.append(f'La cadena "{palabra}" no pertenece al alfabeto.')
 
         Historial(palabrasIngresadas=palabra, estadoDelaPalabra=resultados[0]).save()
-        docExterno=open("C://Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context({'resultados': resultados, 'palabra': palabra})
@@ -42,7 +55,7 @@ class CrearGrafo:
     @csrf_exempt
     def historial(request):
         historial_Palabras = Historial.objects.all()
-        docExterno=open("C://Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context({'historial': historial_Palabras})
