@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 class CrearGrafo:
     @csrf_exempt
     def grafo(request):
-        docExterno=open("C:/Users/ADMIN/Desktop/grabaciones y clases unimag/SEMESTRE 9/COMPILADORES/tareas/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context()
@@ -45,7 +45,7 @@ class CrearGrafo:
             resultados.append(f'La cadena "{palabra}" no pertenece al alfabeto.')
 
         Historial(palabrasIngresadas=palabra, estadoDelaPalabra=resultados[0]).save()
-        docExterno=open("C:/Users/ADMIN/Desktop/grabaciones y clases unimag/SEMESTRE 9/COMPILADORES/tareas/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context({'resultados': resultados, 'palabra': palabra})
@@ -55,7 +55,7 @@ class CrearGrafo:
     @csrf_exempt
     def historial(request):
         historial_Palabras = Historial.objects.all()
-        docExterno=open("C:/Users/ADMIN/Desktop/grabaciones y clases unimag/SEMESTRE 9/COMPILADORES/tareas/automataPila/automataPila/vista/static/grafo.html")
+        docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
         ctx=Context({'historial': historial_Palabras})
