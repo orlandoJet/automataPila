@@ -18,5 +18,8 @@ from django.urls import path
 from . import indexVistas
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/',indexVistas.grafo),
+    path('inicio/',indexVistas.CrearGrafo.grafo),
+    path('palindromo/',indexVistas.CrearGrafo.Palindromo,name='Palindromo'),
+    path('historial/',indexVistas.CrearGrafo.historial,name='historial'),
+    path('borrar_historial/',indexVistas.CrearGrafo.borrar_historial,name='borrar_historial')
 ]

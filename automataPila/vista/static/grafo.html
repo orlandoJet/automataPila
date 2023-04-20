@@ -8,7 +8,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href='{% static "CSS/estiloGrafo.css" %}'>
     </head>
-    <body>
+    <body onload="encenderGrafo()">
         <section id="grafo">
             <span class="linea" id="l1"></span>
             <span class="flecha" id="f1"></span>
@@ -45,6 +45,55 @@
             <span class="flecha" id="f4"></span>
             <span class="circulo" id="r">r</span>
         </section>
+        <section id="insercion">
+            <form method="post" action="{% url 'Palindromo' %}" id="evaluador" >
+                
+               
+                <input type="text" name="palabra" id="palabra" placeholder="Ingrese una palabra...">
+                <button type="submit">Evaluar</button>
+            </form>
+            {% if resultados %}
+                <ul>
+                {% for resultado in resultados %}
+                    <li>{{ resultado }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <br>
+            <form method="post" action="{% url 'historial' %}" id="evaluador" >
+                {% csrf_token %}
+                <button type="submit">Mostrar historial</button>
+            </form>
+            <form method="post" action="{% url 'borrar_historial' %}" id="evaluador">
+                {% csrf_token %}
+                <button type="submit">Borrar historial</button>
+            </form>
+            <br>
+            {% if historial %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Palabra ingresada</th>
+                            <th>"Estado de la palabra"</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in historial %}
+                        <tr>
+                            <td>{{ h.palabrasIngresadas }}</td>
+                            <td>{{ h.estadoDelaPalabra }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p> "No hay palabras en el historial."</p>
+            {% endif %}
+
+
+        </section>
+        
     <script src='{% static "JS/flechasCanvas.js"%}'></script>
+    <script src='{% static "JS/recorridoGrafo.js"%}'></script>
     </body>
 </html>
