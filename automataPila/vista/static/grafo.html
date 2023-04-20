@@ -8,7 +8,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href='{% static "CSS/estiloGrafo.css" %}'>
     </head>
-    <body>
+    <body onload="encenderGrafo()">
         <section id="grafo">
             <span class="linea" id="l1"></span>
             <span class="flecha" id="f1"></span>
@@ -49,7 +49,7 @@
             <form method="post" action="{% url 'Palindromo' %}" id="evaluador" >
                 
                
-                <input type="text" name="palabra" placeholder="Ingrese una palabra...">
+                <input type="text" name="palabra" id="palabra" placeholder="Ingrese una palabra...">
                 <button type="submit">Evaluar</button>
             </form>
             {% if resultados %}
@@ -94,5 +94,6 @@
         </section>
         
     <script src='{% static "JS/flechasCanvas.js"%}'></script>
+    <script src='{% static "JS/recorridoGrafo.js"%}'></script>
     </body>
 </html>
