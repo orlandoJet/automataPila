@@ -28,7 +28,7 @@ class CrearGrafo:
             if letra==" ":
                 palabraVal=False
                 break
-            if letra=="a" or letra=="b" and len(palabra) >= 6 and palabra == palabra[::-1] and len(palabra) % 2 == 0:
+            if letra=="a" or letra=="b" and len(palabra) >= 4 and palabra == palabra[::-1] and len(palabra) % 2 == 0:
                 pila.append(letra)
             else:
                 palabraVal=False
