@@ -15,10 +15,14 @@ class receptora{
     encenderLineaCurva(){
         let ctx=this.valor.getContext("2d");
         ctx.strokeStyle = "green";
+        ctx.stroke();
     }    
     encenderEstadoAceptacion(){
         this.valor.style.borderColor="green";
         this.valor.style.outlineColor="green";
+    }
+    encenderTransicion(){
+        this.valor.style.color="green"
     }
 
 }
@@ -27,12 +31,12 @@ class interfazComando{
         this.valor=valor;
     }
     ejecutar(){
-        
+
     }
 }    
 class comandoEncenderLinea extends interfazComando{
     constructor(valor){
-        super(valor)
+        super(valor);
     }
     ejecutar(){
         let x=new receptora(this.valor);
@@ -42,7 +46,7 @@ class comandoEncenderLinea extends interfazComando{
 }
 class comandoEncenderFlecha extends interfazComando{
     constructor(valor){
-        super(valor)
+        super(valor);
     }
     ejecutar(){
         let x=new receptora(this.valor);
@@ -52,7 +56,7 @@ class comandoEncenderFlecha extends interfazComando{
 }
 class comandoEncenderEstado extends interfazComando{
     constructor(valor){
-        super(valor)
+        super(valor);
     }
     ejecutar(){
         let x=new receptora(this.valor);
@@ -62,7 +66,7 @@ class comandoEncenderEstado extends interfazComando{
 }
 class comandoEncenderLineaCurva extends interfazComando{
     constructor(valor){
-        super(valor)
+        super(valor);
     }
     ejecutar(){
         let x=new receptora(this.valor);
@@ -72,11 +76,21 @@ class comandoEncenderLineaCurva extends interfazComando{
 }
 class comandoEncenderEstadoAceptacion extends interfazComando{
     constructor(valor){
-        super(valor)
+        super(valor);
     }
     ejecutar(){
         let x=new receptora(this.valor);
         x.encenderEstadoAceptacion();  
+    } 
+    
+}
+class comandoEncenderTransicion extends interfazComando{
+    constructor(valor){
+        super(valor);
+    }
+    ejecutar(){
+        let x=new receptora(this.valor);
+        x.encenderTransicion();  
     } 
     
 }
@@ -89,17 +103,72 @@ class invocadora{
     }
 }
 function encenderGrafo(){
-    palabra=document.getElementById("palabra").value;
-    palabra=obtenerPalabraValida(palabra)
-    if(palabra!=null){
-        correrComandos("p","l1","f1","","");
+    if (document.getElementById("mensajeAutomata")!=null) {
+        let cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
+        let palabra=obtenerPalabraValida(cadenaCompleta);
+        let pilaConfig=["#"];
+        if(palabra!=null){
+            correrComandos("p","l1","f1","","","");
+            for(let i=0; i<palabra.length; i++){
+                if (i==0 && palabra[i]=="a" && pilaConfig[i]=="#"){
+                    pilaConfig.push("a");
+                    correrComandos("","","f2","flechaCurva1","","let5f");
+                }
+                if (i==0 && palabra[i]=="b" && pilaConfig[i]=="#"){
+                    pilaConfig.push("b");
+                    correrComandos("","","f2","flechaCurva1","","let5e");
+                }
+                if (i<palabra.length/2) {
+                    if (palabra[i]=="a" && pilaConfig[i]=="a"){
+                        pilaConfig.push("a");
+                        correrComandos("","","","","","let5d");
+                    }
+                    if (palabra[i]=="b" && pilaConfig[i]=="a"){
+                        pilaConfig.push("b");
+                        correrComandos("","","","","","let5c");
+                    }
+                    if (palabra[i]=="a" && pilaConfig[i]=="b"){
+                        pilaConfig.push("a");
+                        correrComandos("","","","","","let5b");
+                    }
+                    if (palabra[i]=="b" && pilaConfig[i]=="b"){
+                        pilaConfig.push("b");
+                        correrComandos("","","","","","let5a");
+                    } 
+                }
+                else{
+                    if(i==palabra.length/2){
+                        pilaConfig.pop();
+                        if (palabra[i]=="a") {
+                            correrComandos("q","l3","f3","","","let3b");
+                        }
+                        else{
+                            correrComandos("q","l3","f3","","","let3a");
+                        }
+                    }
+                    else{
+                        pilaConfig.pop();
+                        if (palabra[i]=="a") {
+                            correrComandos("","","f5","flechaCurva2","","let6b");
+                        }
+                        else{
+                            correrComandos("","","f5","flechaCurva2","","let6a");
+                        }
+                    }
+                    if (i+1==palabra.length) {
+                        correrComandos("","l4","f4","","r","let4");
+                    }
+                }
+            }
+        }
     }
-    //else{
-        //alert("la palabra "+palabra+" no ha sido aceptada por el automata");
-    //}
 }
-function correrComandos(estado,linea,flecha,lineaCurva,aceptacion){
-    let comando=null
+function correrComandos(estado,linea,flecha,lineaCurva,aceptacion,transicion){
+    let comando=null;
+    if(transicion!=""){
+        comando=new invocadora(new comandoEncenderTransicion(document.getElementById(transicion)));
+        comando.comandoEjecucion();
+    }
     if(linea!=""){
         comando=new invocadora(new comandoEncenderLinea(document.getElementById(linea)));
         comando.comandoEjecucion();
@@ -122,9 +191,17 @@ function correrComandos(estado,linea,flecha,lineaCurva,aceptacion){
         comando.comandoEjecucion();
     }
 }
-function obtenerPalabraValida(palabra) {
-    pila=Array();
-    palabraInv=null;
+function obtenerPalabraValida(cadenaCompleta){
+    let palabraIndiceInicial=cadenaCompleta.indexOf('"');
+    let palabra="";
+    let pila=Array();
+    let palabraInv=null;
+    for (let i = cadenaCompleta.length; i>=0; i--) {
+        if (cadenaCompleta[i]=='"') {
+            palabra=cadenaCompleta.substring(palabraIndiceInicial+1,i);
+            break;
+        }
+    }
     for (let i = 0; i<palabra.length; i++) {
         if (palabra[i]==" ") {
             pila=null;
@@ -143,7 +220,7 @@ function obtenerPalabraValida(palabra) {
         while(pila.length>0){    
             palabraInv+=pila.pop();
         }
-        if (palabra!=palabraInv) {
+        if (palabra!=palabraInv || palabra=="" || pila.length==1 || palabra.length%2!=0) {
             palabraInv=null;
         }
     }

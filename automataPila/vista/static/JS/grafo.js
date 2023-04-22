@@ -12,7 +12,7 @@ function historialEspacio(){
     if(document.getElementById("historial")!=null){
         let tabla=document.getElementById("historial");
         let numFilas=tabla.rows.length;
-        let espacio=numFilas*5;
+        let espacio=numFilas*7;
         let grafo=document.getElementById("grafo");
         let medida=espacio+"mm";
         grafo.style.marginBottom=medida;  
