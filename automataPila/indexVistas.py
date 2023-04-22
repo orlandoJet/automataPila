@@ -37,12 +37,14 @@ class CrearGrafo:
         if palabraVal==True:
             while len(pila) > 0:
                 palabra_invertida += pila.pop()
+            if len(pila)==1 or len(pila)%2!=0:
+                palabra_invertida=""
             if palabra == palabra_invertida:
                 resultados.append(f'La cadena "{palabra}" es un palíndromo.')
             else:
                 resultados.append(f'La cadena "{palabra}" no es un palíndromo.')
         else:
-            resultados.append(f'La cadena "{palabra}" no pertenece al alfabeto.')
+            resultados.append(f'La cadena "{palabra}" tiene simbolos que no pertenecen al alfabeto.')
 
         Historial(palabrasIngresadas=palabra, estadoDelaPalabra=resultados[0]).save()
         docExterno=open("C:/Users/ADMIN/Desktop/grabaciones y clases unimag/SEMESTRE 9/COMPILADORES/tareas/automataPila/automataPila/vista/static/grafo.html")
