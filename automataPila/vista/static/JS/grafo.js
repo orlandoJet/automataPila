@@ -93,7 +93,7 @@ function interfazIdioma(){
                 document.getElementById("sinHistorial").innerText='"There are no words in the history."';
             }
             break;
-        case "Francés":
+        case "Frances":
                 document.getElementById("palabra").placeholder="Saisir un mot...";
                 document.getElementById("validacion").innerText="Évaluer";
                 document.getElementById("eleccionLeng").innerText="choisir la langue :";
