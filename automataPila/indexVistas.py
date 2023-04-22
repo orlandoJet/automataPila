@@ -28,7 +28,7 @@ class CrearGrafo:
             if letra==" ":
                 palabraVal=False
                 break
-            if letra=="a" or letra=="b":
+            if letra=="a" or letra=="b" and len(palabra) >= 6 and palabra == palabra[::-1] and len(palabra) % 2 == 0:
                 pila.append(letra)
             else:
                 palabraVal=False
@@ -46,7 +46,7 @@ class CrearGrafo:
             else:
                 resultados.append(f'La cadena "{palabra}" no es un palíndromo.')
         else:
-            resultados.append(f'La cadena "{palabra}" tiene símbolos que no pertenecen al alfabeto o es una palabra vacia.')
+            resultados.append(f'La cadena "{palabra}" tiene símbolos que no pertenecen al alfabeto o es una palabra vacia')
 
         Historial(palabrasIngresadas=palabra, estadoDelaPalabra=resultados[0]).save()
         docExterno=open("C:/Users/user/Downloads/automataPila/automataPila/vista/static/grafo.html")
