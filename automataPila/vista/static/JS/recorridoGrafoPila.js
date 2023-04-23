@@ -107,33 +107,40 @@ function encenderGrafo(){
         let cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
         let palabra=obtenerPalabraValida(cadenaCompleta);
         let pilaConfig=["#"];
+        aniadirLetraPila("#");
         if(palabra!=null){
             correrComandos("p","l1","f1","","","");
             for(let i=0; i<palabra.length; i++){
                 if (i==0 && palabra[i]=="a" && pilaConfig[i]=="#"){
                     pilaConfig.push("a");
                     correrComandos("","","f2","flechaCurva1","","let5f");
+                    aniadirLetraPila("a");
                 }
                 if (i==0 && palabra[i]=="b" && pilaConfig[i]=="#"){
                     pilaConfig.push("b");
                     correrComandos("","","f2","flechaCurva1","","let5e");
+                    aniadirLetraPila("b");
                 }
                 if (i<palabra.length/2) {
                     if (palabra[i]=="a" && pilaConfig[i]=="a"){
                         pilaConfig.push("a");
                         correrComandos("","","","","","let5d");
+                        aniadirLetraPila("a");
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="a"){
                         pilaConfig.push("b");
                         correrComandos("","","","","","let5c");
+                        aniadirLetraPila("b");
                     }
                     if (palabra[i]=="a" && pilaConfig[i]=="b"){
                         pilaConfig.push("a");
                         correrComandos("","","","","","let5b");
+                        aniadirLetraPila("a");
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="b"){
                         pilaConfig.push("b");
                         correrComandos("","","","","","let5a");
+                        aniadirLetraPila("b");
                     } 
                 }
                 else{
@@ -141,10 +148,13 @@ function encenderGrafo(){
                         pilaConfig.pop();
                         if (palabra[i]=="a") {
                             correrComandos("q","l3","f3","","","let3b");
+                            
                         }
                         else{
                             correrComandos("q","l3","f3","","","let3a");
+                            
                         }
+                        removerLetraPila();
                     }
                     else{
                         pilaConfig.pop();
@@ -154,9 +164,11 @@ function encenderGrafo(){
                         else{
                             correrComandos("","","f5","flechaCurva2","","let6a");
                         }
+                        removerLetraPila();
                     }
                     if (i+1==palabra.length) {
                         correrComandos("","l4","f4","","r","let4");
+                        removerLetraPila();
                     }
                 }
             }
@@ -225,4 +237,23 @@ function obtenerPalabraValida(cadenaCompleta){
         }
     }
     return palabraInv;
+}
+function aniadirLetraPila(letra){
+    let pilaCuerpo=document.getElementById("cuerpoPila");
+    let pilaLetra=document.createElement("td");
+    let fila=document.createElement("tr");
+    let filaUno=null
+    pilaLetra.innerText=letra;
+    fila.appendChild(pilaLetra);
+    if (pilaCuerpo.rows.length==0) {    
+        pilaCuerpo.appendChild(fila);
+    }
+    else{
+        pilaCuerpo.insertBefore(fila,pilaCuerpo.children[0]);
+    }
+
+}
+function removerLetraPila() {
+    let pilaCuerpo=document.getElementById("cuerpoPila");
+    pilaCuerpo.removeChild(pilaCuerpo.firstChild)
 }

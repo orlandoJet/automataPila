@@ -93,7 +93,7 @@ function interfazIdioma(){
                 document.getElementById("sinHistorial").innerText='"There are no words in the history."';
             }
             break;
-        case "Francés":
+        case "Frances":
                 document.getElementById("palabra").placeholder="Saisir un mot...";
                 document.getElementById("validacion").innerText="Évaluer";
                 document.getElementById("eleccionLeng").innerText="choisir la langue :";
@@ -187,6 +187,7 @@ function cambiarIdiomaEstadoHistorial(parteNueva1,parteNueva2,palabraNula,parteN
 function validarPalabra(cadenaCompleta) {
     let palabraIndiceInicial=cadenaCompleta.indexOf('"');
     let valido=false;
+    let palabra=null;
     for (let i = cadenaCompleta.length; i>=0; i--) {
         if (cadenaCompleta[i]=='"') {
             palabra=cadenaCompleta.substring(palabraIndiceInicial+1,i);

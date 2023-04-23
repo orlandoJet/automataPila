@@ -13,7 +13,7 @@
         <select name="lenguaje" id="lenguaje">
             <option value="Espaniol">Espa&ntildeol</option>
             <option value="English">English</option>
-            <option value="Francés">Frances</option>
+            <option value="Frances">Frances</option>
         </select>
         <button type="button" id="botonIdioma" onclick="interfazIdioma()">Ok</button>
         <section id="grafo">
@@ -52,7 +52,12 @@
             <span class="flecha" id="f4"></span>
             <span class="circulo" id="r">r</span>
         </section>
-
+        <section id="pila">
+            <table id="letrasPila">
+                <tbody id="cuerpoPila">                  
+                </tbody>
+            </table>
+        </section>
 
         <section id="insercion">
             <form method="post" action="{% url 'Palindromo' %}" id="evaluador" >
@@ -104,6 +109,6 @@
         </section>
     <script src='{% static "JS/grafo.js"%}'></script>  
     <script src='{% static "JS/flechasCanvas.js"%}'></script>
-    <script src='{% static "JS/recorridoGrafo.js"%}'></script>
+    <script src='{% static "JS/recorridoGrafoPila.js"%}'></script>
     </body>
 </html>
