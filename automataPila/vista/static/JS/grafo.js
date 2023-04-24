@@ -29,6 +29,10 @@ function interfazIdioma(){
             document.getElementById("palabra").placeholder = "Ingrese una palabra...";
             document.getElementById("validacion").innerText = "Evaluar";
             document.getElementById("eleccionLeng").innerText = "elija el idioma:";
+            document.getElementById("eleccionVel").innerText = "elija la velocidad de ejecución del grafo y la pila:";
+            document.getElementById("velocidad").options[0].text="normal";
+            document.getElementById("velocidad").options[1].text="rápido";
+            document.getElementById("velocidad").options[2].text="lento";
             if (document.getElementById("mensajeAutomata") != null) {
                 cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
                 primeraParte=obtenerPrimeraParteCad(cadenaCompleta);
@@ -63,6 +67,10 @@ function interfazIdioma(){
             document.getElementById("palabra").placeholder="Enter a word...";
             document.getElementById("validacion").innerText="evaluate";
             document.getElementById("eleccionLeng").innerText="choose language:";
+            document.getElementById("eleccionVel").innerText = "choose the graph and stack execution speed:";
+            document.getElementById("velocidad").options[0].text="normal";
+            document.getElementById("velocidad").options[1].text="fast";
+            document.getElementById("velocidad").options[2].text="slow";
             if(document.getElementById("mensajeAutomata")!=null){
                 cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
                 primeraParte=obtenerPrimeraParteCad(cadenaCompleta);
@@ -97,6 +105,10 @@ function interfazIdioma(){
                 document.getElementById("palabra").placeholder="Saisir un mot...";
                 document.getElementById("validacion").innerText="Évaluer";
                 document.getElementById("eleccionLeng").innerText="choisir la langue :";
+                document.getElementById("eleccionVel").innerText = "choisissez la vitesse d'exécution du graphe et de la pile :";
+                document.getElementById("velocidad").options[0].text="normal";
+                document.getElementById("velocidad").options[1].text="rapide";
+                document.getElementById("velocidad").options[2].text="lent";
                 if(document.getElementById("mensajeAutomata")!=null){
                     cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
                     primeraParte=obtenerPrimeraParteCad(cadenaCompleta);

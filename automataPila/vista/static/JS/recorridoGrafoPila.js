@@ -106,69 +106,74 @@ function encenderGrafo(){
     if (document.getElementById("mensajeAutomata")!=null) {
         let cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
         let palabra=obtenerPalabraValida(cadenaCompleta);
+        let retraso=retrasoSegundos();
+        let auxRetr=2000;
         let pilaConfig=["#"];
-        aniadirLetraPila("#");
         if(palabra!=null){
-            correrComandos("p","l1","f1","","","");
+            setTimeout(function(){correrComandos("p","l1","f1","","","")},retraso);
+            setTimeout(function(){aniadirLetraPila("#")},retraso);
+            retraso=retraso+auxRetr;
             for(let i=0; i<palabra.length; i++){
                 if (i==0 && palabra[i]=="a" && pilaConfig[i]=="#"){
                     pilaConfig.push("a");
-                    correrComandos("","","f2","flechaCurva1","","let5f");
-                    aniadirLetraPila("a");
+                    setTimeout(function(){correrComandos("","","f2","flechaCurva1","","let5f")},retraso);
+                    setTimeout(function(){aniadirLetraPila("a")},retraso);
+                    retraso=retraso+auxRetr;
                 }
                 if (i==0 && palabra[i]=="b" && pilaConfig[i]=="#"){
                     pilaConfig.push("b");
-                    correrComandos("","","f2","flechaCurva1","","let5e");
-                    aniadirLetraPila("b");
+                    setTimeout(function(){correrComandos("","","f2","flechaCurva1","","let5e")},retraso);
+                    setTimeout(function(){aniadirLetraPila("b")},retraso);
+                    retraso=retraso+auxRetr;
                 }
                 if (i<palabra.length/2) {
                     if (palabra[i]=="a" && pilaConfig[i]=="a"){
                         pilaConfig.push("a");
-                        correrComandos("","","","","","let5d");
-                        aniadirLetraPila("a");
+                        setTimeout(function(){correrComandos("","","","","","let5d")},retraso);
+                        setTimeout(function(){aniadirLetraPila("a")},retraso);
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="a"){
                         pilaConfig.push("b");
-                        correrComandos("","","","","","let5c");
-                        aniadirLetraPila("b");
+                        setTimeout(function(){correrComandos("","","","","","let5c")},retraso);
+                        setTimeout(function(){aniadirLetraPila("b")},retraso);
                     }
                     if (palabra[i]=="a" && pilaConfig[i]=="b"){
                         pilaConfig.push("a");
-                        correrComandos("","","","","","let5b");
-                        aniadirLetraPila("a");
+                        setTimeout(function(){correrComandos("","","","","","let5b")},retraso);
+                        setTimeout(function(){aniadirLetraPila("a")},retraso);
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="b"){
                         pilaConfig.push("b");
-                        correrComandos("","","","","","let5a");
-                        aniadirLetraPila("b");
-                    } 
+                        setTimeout(function(){correrComandos("","","","","","let5a")},retraso);
+                        setTimeout(function(){aniadirLetraPila("b")},retraso);
+                    }
+                    retraso=retraso+auxRetr;
                 }
                 else{
                     if(i==palabra.length/2){
                         pilaConfig.pop();
                         if (palabra[i]=="a") {
-                            correrComandos("q","l3","f3","","","let3b");
-                            
+                            setTimeout(function(){correrComandos("q","l3","f3","","","let3b")},retraso);   
                         }
                         else{
-                            correrComandos("q","l3","f3","","","let3a");
-                            
+                            setTimeout(function(){correrComandos("q","l3","f3","","","let3a")},retraso);
                         }
-                        removerLetraPila();
+                        setTimeout(removerLetraPila,retraso);
+                        retraso=retraso+auxRetr;
                     }
                     else{
                         pilaConfig.pop();
                         if (palabra[i]=="a") {
-                            correrComandos("","","f5","flechaCurva2","","let6b");
+                            setTimeout(function(){correrComandos("","","f5","flechaCurva2","","let6b")},retraso);
                         }
                         else{
-                            correrComandos("","","f5","flechaCurva2","","let6a");
+                            setTimeout(function(){correrComandos("","","f5","flechaCurva2","","let6a")},retraso);
                         }
-                        removerLetraPila();
+                        setTimeout(removerLetraPila,retraso);
+                        retraso=retraso+auxRetr;
                     }
                     if (i+1==palabra.length) {
-                        correrComandos("","l4","f4","","r","let4");
-                        removerLetraPila();
+                        setTimeout(function(){correrComandos("","l4","f4","","r","let4")},retraso);
                     }
                 }
             }
@@ -255,5 +260,35 @@ function aniadirLetraPila(letra){
 }
 function removerLetraPila() {
     let pilaCuerpo=document.getElementById("cuerpoPila");
-    pilaCuerpo.removeChild(pilaCuerpo.firstChild)
+    pilaCuerpo.removeChild(pilaCuerpo.firstElementChild);
+}
+function velocidadEjecucion() {
+    let url=document.getElementById("evaluador").action;
+    let velocidadEscogida=document.getElementById("velocidad").value;
+    let velocidadActual=null;
+    for (let i = url.length; i>=0; i--) {
+        if (url[i]=="/") {
+            velocidadActual=url.substring(i+1);
+            break;
+        }
+        
+    }
+    document.getElementById("evaluador").action=url.replace(velocidadActual,velocidadEscogida);
+}
+function retrasoSegundos(){
+    let segundos=0;
+    let velocidad=null;
+    if (document.getElementById("velocidadEscog")!=null){
+        velocidad=document.getElementById("velocidadEscog").innerText;
+        if (velocidad=="normal") {
+            segundos=2000;
+        }
+        if (velocidad=="rápido" || velocidad=="fast" || velocidad=="rapide") {
+            segundos=1000;
+        }
+        if (velocidad=="lento" || velocidad=="slow" || velocidad=="lent") {
+            segundos=5000;
+        }
+    }
+    return segundos;
 }
