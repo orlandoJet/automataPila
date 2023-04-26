@@ -260,7 +260,7 @@ function esPalindromo(palabra){
         while (pila.length > 0) {
             palabra_invertida += pila.pop();
         }
-        if (palabra == palabra_invertida) {
+        if (palabra == palabra_invertida && palabra.length%2==0) {
             palabraVal=true;
         } else {
             palabraVal=false;
