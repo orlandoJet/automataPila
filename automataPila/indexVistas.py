@@ -17,7 +17,7 @@ class CrearGrafo:
         return HttpResponse(documento)
     
     @csrf_exempt
-    def Palindromo(request):
+    def Palindromo(request,velocidad):
         # Obtener la palabra del usuario
         palabra = request.POST.get('palabra', '')
         pila = []
@@ -28,27 +28,31 @@ class CrearGrafo:
             if letra==" ":
                 palabraVal=False
                 break
-            if letra=="a" or letra=="b":
+            if letra=="a" or letra=="b" and palabra == palabra[::-1] and len(palabra) % 2 == 0:
                 pila.append(letra)
             else:
                 palabraVal=False
-                break   
+                break
+        if(len(palabra)==0):
+            palabraVal=False
         palabra_invertida = ""
         if palabraVal==True:
             while len(pila) > 0:
                 palabra_invertida += pila.pop()
+            if len(pila)==1 or len(pila)%2!=0:
+                palabra_invertida=""
             if palabra == palabra_invertida:
                 resultados.append(f'La cadena "{palabra}" es un palíndromo.')
             else:
                 resultados.append(f'La cadena "{palabra}" no es un palíndromo.')
         else:
-            resultados.append(f'La cadena "{palabra}" no pertenece al alfabeto.')
+            resultados.append(f'La cadena "{palabra}" tiene símbolos que no pertenecen al alfabeto o es una palabra vacia')
 
         Historial(palabrasIngresadas=palabra, estadoDelaPalabra=resultados[0]).save()
         docExterno=open("C:/Users/ADMIN/Desktop/grabaciones y clases unimag/SEMESTRE 9/COMPILADORES/tareas/automataPila/automataPila/vista/static/grafo.html")
         plt=Template(docExterno.read())
         docExterno.close()
-        ctx=Context({'resultados': resultados, 'palabra': palabra})
+        ctx=Context({'resultados': resultados, 'palabra': palabra,'velocidad':velocidad})
         documento=plt.render(ctx)
         return HttpResponse(documento)
 
