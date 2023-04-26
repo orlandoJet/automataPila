@@ -37,6 +37,8 @@ class CrearGrafo:
             palabraVal=False
         palabra_invertida = ""
         if palabraVal==True:
+            while len(pila) > 0:
+                palabra_invertida += pila.pop()
             if palabra == palabra_invertida and len(palabra)%2==0:
                 resultados.append(f'La cadena "{palabra}" es un palíndromo.')
             else:
