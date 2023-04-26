@@ -10,20 +10,19 @@
     </head>
     <body onload="historialEspacio(),mensajeVoz(),encenderGrafo()">
         <label for="lenguaje" id="eleccionLeng">elija el idioma:</label>
-        <select name="lenguaje" id="lenguaje">
+        <select name="lenguaje" id="lenguaje" onclick="interfazIdioma()">
             <option value="Espaniol">Espa&ntildeol</option>
             <option value="English">English</option>
             <option value="Frances">Frances</option>
         </select>
-        <button type="button" id="botonIdioma" onclick="interfazIdioma()">Ok</button>
         <br>
         <label for="velocidad" id="eleccionVel">elija la velocidad de ejecuci&oacute;n del grafo y la pila:</label>
-        <select name="velocidad" id="velocidad">
+        <select name="velocidad" id="velocidad" onclick="velocidadEjecucion(),velocidadEleg()">
             <option value="normal">normal</option>
             <option value="rapido">r&aacute;pido</option>
             <option value="lento">lento</option>
         </select>
-        <button type="button" id="botonVelocidad" onclick="velocidadEjecucion()">Ok</button>
+        <p id="velocidadEleg">{velocidad seleccionada: normal}</p>
         {% if velocidad%}
             <p id="velocidadEscog" hidden>{{velocidad}}</p>
         {% endif %}

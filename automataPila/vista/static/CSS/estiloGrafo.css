@@ -42,12 +42,12 @@
 #let5 {
     margin-top: -11mm;
     line-height: 6mm;
-    margin-left: 42mm;;
+    margin-left: 18%;
 }
 #let6 {
     margin-top: -62mm;
     line-height: 6mm;
-    margin-left: 132mm;
+    margin-left: 40%;
 }
 #flechaCurva1 {
     width: 47mm;
@@ -187,8 +187,11 @@ th{
     color: #444;
 }
 #pila{
-    margin-left: 250mm;
+    margin-left: 70%;
 }
 #letrasPila{
     width: 8mm;
+}
+#velocidadEleg{
+    display: inline;
 }

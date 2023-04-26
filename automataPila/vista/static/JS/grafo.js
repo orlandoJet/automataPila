@@ -15,7 +15,7 @@ function historialEspacio(){
         let espacio=numFilas*7;
         let grafo=document.getElementById("grafo");
         let medida=espacio+"mm";
-        grafo.style.marginBottom=medida;  
+        grafo.style.marginBottom=medida; 
     }
 }
 function interfazIdioma(){
@@ -143,6 +143,9 @@ function interfazIdioma(){
         default:
             break;
     }
+    if (document.getElementById("velocidadEleg").innerText!=""){
+        velocidadEleg();
+    }
 }
 function obtenerPrimeraParteCad(cadenaCompleta) {
     let primeraParte=null;
@@ -211,15 +214,27 @@ function validarPalabra(cadenaCompleta) {
 }
 function reemplazarCadena(cadenaVieja, cadenaNueva, cadenaCompleta) {
     // Reemplaza cadenaVieja por cadenaNueva en cadenaCompleta
-    
-       for (let i = 0; i < cadenaCompleta.length; i++) {
-          if (cadenaCompleta.substring(i, i + cadenaVieja.length) == cadenaVieja) {
-             cadenaCompleta= cadenaCompleta.substring(0, i) + cadenaNueva + cadenaCompleta.substring(i + cadenaVieja.length, cadenaCompleta.length);
-          }
-       }
-       return cadenaCompleta;
+    for (let i = 0; i < cadenaCompleta.length; i++) {
+        if (cadenaCompleta.substring(i, i + cadenaVieja.length) == cadenaVieja) {
+            cadenaCompleta= cadenaCompleta.substring(0, i) + cadenaNueva + cadenaCompleta.substring(i + cadenaVieja.length, cadenaCompleta.length);
+        }
     }
-
+       return cadenaCompleta;
+}
+function velocidadEleg() {
+    let indVelEleg=document.getElementById("velocidad").selectedIndex;
+    let velocidadEleg=document.getElementById("velocidad").options[indVelEleg].text;
+    let idiomaRecon=document.getElementById("velocidad").options[1].text;
+    if (idiomaRecon=="rápido") {
+        document.getElementById("velocidadEleg").innerText="{velocidad seleccionada: "+velocidadEleg+"}";
+    }
+    if (idiomaRecon=="fast") {
+        document.getElementById("velocidadEleg").innerText="{selected speed: "+velocidadEleg+"}";
+    }
+    if (idiomaRecon=="rapide") {
+        document.getElementById("velocidadEleg").innerText="{vitesse sélectionnée: "+velocidadEleg+"}";
+    }
+}
 function esPalindromo(palabra){
     let pila = [];
     let palabraVal=null;

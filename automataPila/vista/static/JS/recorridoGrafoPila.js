@@ -22,7 +22,7 @@ class receptora{
         this.valor.style.outlineColor="green";
     }
     encenderTransicion(){
-        this.valor.style.color="green"
+        this.valor.style.color="green";
     }
 
 }
@@ -107,7 +107,7 @@ function encenderGrafo(){
         let cadenaCompleta=document.getElementById("mensajeAutomata").innerText;
         let palabra=obtenerPalabraValida(cadenaCompleta);
         let retraso=retrasoSegundos();
-        let auxRetr=2000;
+        let auxRetr=retraso;
         let pilaConfig=["#"];
         if(palabra!=null){
             setTimeout(function(){correrComandos("p","l1","f1","","","")},retraso);
@@ -118,34 +118,38 @@ function encenderGrafo(){
                     pilaConfig.push("a");
                     setTimeout(function(){correrComandos("","","f2","flechaCurva1","","let5f")},retraso);
                     setTimeout(function(){aniadirLetraPila("a")},retraso);
-                    retraso=retraso+auxRetr;
+                    setTimeout(function(){document.getElementById("let5f").style.color="black"},retraso+auxRetr);
                 }
                 if (i==0 && palabra[i]=="b" && pilaConfig[i]=="#"){
                     pilaConfig.push("b");
                     setTimeout(function(){correrComandos("","","f2","flechaCurva1","","let5e")},retraso);
                     setTimeout(function(){aniadirLetraPila("b")},retraso);
-                    retraso=retraso+auxRetr;
+                    setTimeout(function(){document.getElementById("let5e").style.color="black"},retraso+auxRetr); 
                 }
-                if (i<palabra.length/2) {
+                if (i<palabra.length/2) {                   
                     if (palabra[i]=="a" && pilaConfig[i]=="a"){
                         pilaConfig.push("a");
                         setTimeout(function(){correrComandos("","","","","","let5d")},retraso);
                         setTimeout(function(){aniadirLetraPila("a")},retraso);
+                        setTimeout(function(){document.getElementById("let5d").style.color="black"},retraso+auxRetr);
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="a"){
                         pilaConfig.push("b");
                         setTimeout(function(){correrComandos("","","","","","let5c")},retraso);
                         setTimeout(function(){aniadirLetraPila("b")},retraso);
+                        setTimeout(function(){document.getElementById("let5c").style.color="black"},retraso+auxRetr);
                     }
                     if (palabra[i]=="a" && pilaConfig[i]=="b"){
                         pilaConfig.push("a");
                         setTimeout(function(){correrComandos("","","","","","let5b")},retraso);
                         setTimeout(function(){aniadirLetraPila("a")},retraso);
+                        setTimeout(function(){document.getElementById("let5b").style.color="black"},retraso+auxRetr);
                     }
                     if (palabra[i]=="b" && pilaConfig[i]=="b"){
                         pilaConfig.push("b");
                         setTimeout(function(){correrComandos("","","","","","let5a")},retraso);
                         setTimeout(function(){aniadirLetraPila("b")},retraso);
+                        setTimeout(function(){document.getElementById("let5a").style.color="black"},retraso+auxRetr);
                     }
                     retraso=retraso+auxRetr;
                 }
@@ -153,10 +157,12 @@ function encenderGrafo(){
                     if(i==palabra.length/2){
                         pilaConfig.pop();
                         if (palabra[i]=="a") {
-                            setTimeout(function(){correrComandos("q","l3","f3","","","let3b")},retraso);   
+                            setTimeout(function(){correrComandos("q","l3","f3","","","let3b")},retraso);
+                            setTimeout(function(){document.getElementById("let3b").style.color="black"},retraso+auxRetr);  
                         }
                         else{
                             setTimeout(function(){correrComandos("q","l3","f3","","","let3a")},retraso);
+                            setTimeout(function(){document.getElementById("let3a").style.color="black"},retraso+auxRetr);
                         }
                         setTimeout(removerLetraPila,retraso);
                         retraso=retraso+auxRetr;
@@ -165,9 +171,11 @@ function encenderGrafo(){
                         pilaConfig.pop();
                         if (palabra[i]=="a") {
                             setTimeout(function(){correrComandos("","","f5","flechaCurva2","","let6b")},retraso);
+                            setTimeout(function(){document.getElementById("let6b").style.color="black"},retraso+auxRetr);
                         }
                         else{
                             setTimeout(function(){correrComandos("","","f5","flechaCurva2","","let6a")},retraso);
+                            setTimeout(function(){document.getElementById("let6a").style.color="black"},retraso+auxRetr);
                         }
                         setTimeout(removerLetraPila,retraso);
                         retraso=retraso+auxRetr;
@@ -176,6 +184,7 @@ function encenderGrafo(){
                         setTimeout(function(){correrComandos("","l4","f4","","r","let4")},retraso);
                     }
                 }
+                console.log(retraso);
             }
         }
     }
@@ -281,12 +290,12 @@ function retrasoSegundos(){
     if (document.getElementById("velocidadEscog")!=null){
         velocidad=document.getElementById("velocidadEscog").innerText;
         if (velocidad=="normal") {
-            segundos=2000;
+            segundos=3000;
         }
-        if (velocidad=="rápido" || velocidad=="fast" || velocidad=="rapide") {
-            segundos=1000;
+        if (velocidad=="rapido") {
+            segundos=1500;
         }
-        if (velocidad=="lento" || velocidad=="slow" || velocidad=="lent") {
+        if (velocidad=="lento") {
             segundos=5000;
         }
     }
